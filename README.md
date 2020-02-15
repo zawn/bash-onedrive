@@ -89,7 +89,7 @@ and follow the steps. You will need a web browser.
 After the authorization process has successfully completed you can upload files.
 If you see error `AADSTS70002: Error validating credentials. AADSTS50012: Invalid client secret is provided`, try to add a new key and use new secret.
 
-Usage
+upload
 -----
 
 To upload a single file simply type
@@ -152,6 +152,40 @@ If you need your file to be uploaded with a different filename, you can activate
 
 Be aware that for each file you specify you must provide the remote filename as the subsequent parameter. This feature can lead to an unexpected behavior when combined with wildcards (globbing) because the pathname expansion is performed by bash before the execution of the script. Also do not use this when recursively uploading folders.
 
+list
+-----
+
+Show drives stat
+
+    ./onedrive-inspect --stat
+Output
+
+    Drive: a9e9852de69a6461
+        Usage: 281.827 GB / 1029 GB, 747.173 GB Free
+
+List drive's files
+
+    ./onedrive-inspect a9e9852de69a6461
+
+Output
+
+    Apps/
+    Documents/
+    Music/
+    Pictures/
+    Video/
+    a.txt
+
+List drive's directory
+
+    ./onedrive-inspect a9e9852de69a6461 Documents
+
+Output
+
+    works/
+    old/
+    Quick Notes.one
+ 
 Configuration
 -------------
 
