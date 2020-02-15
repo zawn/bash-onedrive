@@ -3,6 +3,7 @@ api_auth_url="https://login.live.com/oauth20_token.srf"
 api_base_url="https://api.onedrive.com/v1.0"
 get_json_value="cut -d= -f2-"
 curl_opts="--silent --retry ${http_retries} --retry-delay 10 -g"
+curl_opts_upload="--retry ${http_retries} --retry-delay 10 -g"
 
 function error() {
 	echo "$1" >&2
@@ -78,7 +79,7 @@ function curl_upload_file() {
 	debug "Uploading '${file}' into ${api_upload_destination}"
 
 	curl \
-		${curl_opts} \
+		${curl_opts_upload} \
 		--request PUT \
 		--output /dev/null \
 		--write-out "%{http_code}" \
@@ -133,7 +134,7 @@ function curl_upload_chunk() {
 	debug "Content-Range: bytes ${current_range_start}-${current_range_end}/${filesize}"
 
 	dd if="${file}" count=1 skip=$2 bs=${max_chunk_size} 2>/dev/null | curl \
-		${curl_opts} \
+		${curl_opts_upload} \
 		--request PUT \
 		--output /dev/null \
 		--write-out "%{http_code}" \
