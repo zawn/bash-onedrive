@@ -1,3 +1,4 @@
+#!/bin/bash
 api_auth_url="https://login.microsoftonline.com/common/oauth2/token"
 api_discovery_url="https://api.office.com/discovery/v2.0/me/services"
 api_discovery_id="https://api.office.com/discovery/"
